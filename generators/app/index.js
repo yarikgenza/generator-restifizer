@@ -5,6 +5,7 @@ const yosay = require('yosay');
 
 // Import file writers
 const rootWriter = require('./writers/root.writer');
+const apidocsWriter = require('./writers/apidocs.writer');
 
 module.exports = class extends Generator {
   prompting() {
@@ -30,6 +31,7 @@ module.exports = class extends Generator {
 
   writing() {
     rootWriter.call(this);
+    apidocsWriter.call(this);
   }
 
   install() {
