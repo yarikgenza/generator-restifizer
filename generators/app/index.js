@@ -5,7 +5,7 @@ const yosay = require('yosay');
 
 module.exports = class extends Generator {
   prompting() {
-    // Have Yeoman greet the user.
+
     this.log(yosay(`Welcome to ${chalk.red('restifizer')} generator!`));
 
     const prompts = [{
@@ -26,12 +26,30 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'), {
-          name: this.props.name,
-          description: this.props.description
-      });
+
+    const rootFiles = [
+      'package.json',
+      'server.js',
+      'runner.js',
+      'README.md',
+      'newrelic.js',
+      'migrate-db.js',
+      'gulpfile.js',
+      'apidoc.json',
+      '.gitlab-ci.yml',
+      '.gitignore',
+      '.eslintrc.js',
+      '.eslintignore',
+    ];
+
+    rootFiles.forEach((path) => {
+      this.fs.copyTpl(
+        this.templatePath(path),
+        this.destinationPath(path), {
+          ...this.props
+        }
+      )
+    });
   }
 
   install() {

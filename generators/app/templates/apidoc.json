@@ -1,0 +1,11 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.1",
+  "description": "<%= name %> REST API docs",
+  "title": "<%= name %> REST API docs",
+  "url" : "https://<%= name %>.vedidev.com",
+  "sampleUrl" : "https://<%= name %>.vedidev.com",
+  "template": {
+    "withCompare": false
+  }
+}
