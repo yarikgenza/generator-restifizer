@@ -225,7 +225,6 @@ class UserController extends BaseController {
               google: {
                 audiences: [config.google.webClientId],
               },
-
             },
           },
         },

@@ -16,6 +16,7 @@ module.exports = class extends Generator {
   prompting() {
 
     this.log(yosay(`Welcome to ${chalk.red('restifizer')} generator!`));
+    this.log('Let me know a bit more about you new project ;)\n');
 
     const prompts = [{
       type: 'input',
@@ -50,5 +51,10 @@ module.exports = class extends Generator {
       bower: false,
       yarn: false,
     });
+  }
+
+  end() {
+    this.log(`\nOk, now everything is ${chalk.green('ready')} to start writing code. Good luck!`);
+    this.log(yosay(`Don't forget to migrate test-db!`))
   }
 };
