@@ -8,27 +8,30 @@ module.exports = class extends Generator {
     // Have Yeoman greet the user.
     this.log(yosay(`Welcome to ${chalk.red('restifizer')} generator!`));
 
-    /* Prompts:
-    
-      const prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
+    const prompts = [{
+      type: 'input',
+      name: 'name',
+      message: 'What is your project name?',
+      default: 'restifizer-app',
+    },{
+      type: 'input',
+      name: 'description',
+      message: 'What is your project description?',
+      default: 'restifizer-app',
     }];
 
     return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
     });
-    */
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json'), {
+          name: this.props.name,
+          description: this.props.description
+      });
   }
 
   install() {
