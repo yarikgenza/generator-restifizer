@@ -3,6 +3,9 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+// Import file writers
+const rootWriter = require('./writers/root.writer');
+
 module.exports = class extends Generator {
   prompting() {
 
@@ -22,34 +25,11 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = props;
-    });
+    })
   }
 
   writing() {
-
-    const rootFiles = [
-      'package.json',
-      'server.js',
-      'runner.js',
-      'README.md',
-      'newrelic.js',
-      'migrate-db.js',
-      'gulpfile.js',
-      'apidoc.json',
-      '.gitlab-ci.yml',
-      '.gitignore',
-      '.eslintrc.js',
-      '.eslintignore',
-    ];
-
-    rootFiles.forEach((path) => {
-      this.fs.copyTpl(
-        this.templatePath(path),
-        this.destinationPath(path), {
-          ...this.props
-        }
-      )
-    });
+    rootWriter.call(this);
   }
 
   install() {
