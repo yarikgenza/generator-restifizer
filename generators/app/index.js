@@ -6,6 +6,11 @@ const yosay = require('yosay');
 // Import file writers
 const rootWriter = require('./writers/root.writer');
 const apidocsWriter = require('./writers/apidocs.writer');
+const configWriter = require('./writers/config.writer');
+const makersWriter = require('./writers/makers.writer');
+const testWriter = require('./writers/test.writer');
+const migrationsWriter = require('./writers/migrations.writer');
+const appWriter = require('./writers/app.writer');
 
 module.exports = class extends Generator {
   prompting() {
@@ -32,9 +37,18 @@ module.exports = class extends Generator {
   writing() {
     rootWriter.call(this);
     apidocsWriter.call(this);
+    configWriter.call(this);
+    makersWriter.call(this);
+    testWriter.call(this);
+    migrationsWriter.call(this);
+    appWriter.call(this);
   }
 
   install() {
-    // this.installDependencies();
+    this.installDependencies({
+      npm: true,
+      bower: false,
+      yarn: false,
+    });
   }
 };
