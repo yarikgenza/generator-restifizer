@@ -6,11 +6,11 @@ const yosay = require('yosay');
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the badass ' + chalk.red('generator-restifizer') + ' generator!'
-    ));
+    this.log(yosay(`Welcome to ${chalk.red('restifizer')} generator!`));
 
-    const prompts = [{
+    /* Prompts:
+    
+      const prompts = [{
       type: 'confirm',
       name: 'someAnswer',
       message: 'Would you like to enable this option?',
@@ -21,6 +21,7 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props;
     });
+    */
   }
 
   writing() {
@@ -31,6 +32,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies();
+    // this.installDependencies();
   }
 };
